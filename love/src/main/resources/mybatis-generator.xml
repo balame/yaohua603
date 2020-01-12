@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+ 
+<generatorConfiguration>
+    <!--配置要链接的数据库的数据源-->
+<!--       <classPathEntry location="E:/GARBAGE_TEMP_SPACE/mysql-connector-java-5.1.46.jar"/>    
+ -->  <!--Mybatis上下文-->
+    
+    <context id="MySqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    
+     	<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+ 			<property name="mappers" value ="tk.mybatis.mapper.common.Mapper" />
+ 			<property name="caseSensitive" value ="true" />	 	
+ 		</plugin>    
+		
+		<commentGenerator>  
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>    
+    
+    
+        <!--配置数据库的链接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/weixin" 
+                        userId="weixin"
+                        password="weixin123"/>
+                        
+        
+        <!--数据库BigDecimals字段在java中定义-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--实体类生成信息-->
+        <javaModelGenerator targetPackage="com.yaohua.love.db" targetProject="../love/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--mybatis 的xml文件地址-->
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="../love/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--mybatis的mapper接口-->
+        <javaClientGenerator targetPackage="com.yaohua.love.db" targetProject="../love/src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--要生成的表结构-->
+        <table tableName="t_test_double" >
+        </table>
+ 
+    </context>
+ </generatorConfiguration>
